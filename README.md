@@ -13,7 +13,7 @@ The system transforms a simple campaign brief into:
 through a modular multi-stage AI pipeline.
 
 ---
-
+# Live Demo: https://campaignos-ai.lovable.app/
 # Live System Architecture
 
 Frontend (Lovable + React + TypeScript)
