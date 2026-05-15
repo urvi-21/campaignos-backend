@@ -13,16 +13,43 @@ def retrieve_reddit_signals(product, audience):
 
     query = f"""
     site:reddit.com
-    discussions, opinions, frustrations,
-    buying behavior, emotional triggers,
-    audience conversations, and trend discussions about
-    {product} for {audience}
+
+    audience frustrations,
+    emotional triggers,
+    skincare pain points,
+    buying hesitation,
+    product trust discussions,
+    creator recommendations,
+    and viral product opinions about
+    {product} targeting {audience}
     """
 
-    response = client.search(
-        query=query,
-        search_depth="advanced",
-        max_results=8
-    )
+    print("\n===================================")
+    print("RETRIEVING REDDIT INTELLIGENCE")
+    print("===================================\n")
 
-    return response["results"]
+    try:
+
+        response = client.search(
+
+            query=query,
+
+            search_depth="advanced",
+
+            max_results=10,
+
+            include_raw_content=True
+        )
+
+        results = response.get("results", [])
+
+        print(f"REDDIT RESULTS: {len(results)}")
+
+        return results
+
+    except Exception as e:
+
+        print("REDDIT RETRIEVAL FAILED")
+        print(str(e))
+
+        return []

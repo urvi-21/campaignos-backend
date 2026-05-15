@@ -12,16 +12,42 @@ client = TavilyClient(
 def retrieve_social_signals(product, audience):
 
     query = f"""
-    Reddit discussions, TikTok trends,
-    audience conversations, creator content styles,
-    and emotional engagement patterns for
+    TikTok trends,
+    Instagram engagement patterns,
+    creator storytelling structures,
+    viral skincare hooks,
+    emotional engagement psychology,
+    audience reactions,
+    and creator campaign performance for
     {product} targeting {audience}
     """
 
-    response = client.search(
-        query=query,
-        search_depth="advanced",
-        max_results=5
-    )
+    print("\n===================================")
+    print("RETRIEVING SOCIAL INTELLIGENCE")
+    print("===================================\n")
 
-    return response["results"]
+    try:
+
+        response = client.search(
+
+            query=query,
+
+            search_depth="advanced",
+
+            max_results=8,
+
+            include_raw_content=True
+        )
+
+        results = response.get("results", [])
+
+        print(f"SOCIAL RESULTS: {len(results)}")
+
+        return results
+
+    except Exception as e:
+
+        print("SOCIAL RETRIEVAL FAILED")
+        print(str(e))
+
+        return []

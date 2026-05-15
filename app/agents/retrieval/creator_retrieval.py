@@ -12,15 +12,41 @@ client = TavilyClient(
 def retrieve_creator_patterns(product):
 
     query = f"""
-    High-performing creators, influencer content styles,
-    engagement patterns, storytelling formats,
-    and creator campaign strategies for {product}
+    high-performing creators,
+    influencer storytelling styles,
+    creator audience trust patterns,
+    engagement structures,
+    creator marketing formats,
+    skincare creator campaigns,
+    and viral creator strategies for {product}
     """
 
-    response = client.search(
-        query=query,
-        search_depth="advanced",
-        max_results=5
-    )
+    print("\n===================================")
+    print("RETRIEVING CREATOR INTELLIGENCE")
+    print("===================================\n")
 
-    return response["results"]
+    try:
+
+        response = client.search(
+
+            query=query,
+
+            search_depth="advanced",
+
+            max_results=8,
+
+            include_raw_content=True
+        )
+
+        results = response.get("results", [])
+
+        print(f"CREATOR RESULTS: {len(results)}")
+
+        return results
+
+    except Exception as e:
+
+        print("CREATOR RETRIEVAL FAILED")
+        print(str(e))
+
+        return []
